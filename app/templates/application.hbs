@@ -1,5 +1,16 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
+Initial Application Page
+<br />
+{{input value=query}}
+<br />
+<button {{action 'search'}}>Search !</button>
+<button {{action 'clear'}}>Clear results</button>
+
+<br />
+<h1>Albums</h1>
+{{#each albums.items as |album|}}
+  <p>{{album.name}}</p>
+  <img style="height: 50px; width 50px;" src="{{album.images.firstObject.url}}" />
+  <p>-----</p>
+{{/each}}
 
 {{outlet}}
