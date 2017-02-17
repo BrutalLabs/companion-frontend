@@ -1,7 +1,7 @@
 {
-  "name": "mt-companion",
+  "name": "companion-frontend",
   "version": "0.0.0",
-  "description": "Small description for mt-companion goes here",
+  "description": "Small description for companion-frontend goes here",
   "license": "MIT",
   "author": "",
   "directories": {
