@@ -46,7 +46,9 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.APP["api"] = {
+      host: 'https://companion-backend.herokuapp.com'
+    }
   }
 
   return ENV;
