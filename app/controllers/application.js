@@ -11,11 +11,12 @@ export default Controller.extend({
   actions: {
     search() {
       this.get('spotifyStore').search(this.get('query')).then(function(response) {
-        this.set('albums', response.albums);
-        this.set('artists', response.artists);
-        this.set('tracks', response.tracks)
+        console.log(response);
+        this.set('albums', response.albums.items.slice(0,5));
+        this.set('artists', response.artists.items.slice(0,5));
+        this.set('tracks', response.tracks.items.slice(0,5));
       }.bind(this), function(err) {
-        console.log('err -> ', err);
+        this.set('errors', err);
       }.bind(this));
     },
     clear() {

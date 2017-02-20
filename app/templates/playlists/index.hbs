@@ -1,0 +1,9 @@
+<h1>Playlists section</h1>
+{{log model}}
+{{#each model as |playlist| }}
+{{log playlist}}
+  {{#each playlist.tracks as |track| }}
+  {{log track}}
+    <p>Track name: {{track.name}}</p>
+  {{/each}}
+{{/each}}
