@@ -3,7 +3,7 @@ const { Component, computed } = Ember;
 
 export default Component.extend({
   queue: null,
-
+  volume: 100,
   playerVars: {
     autoplay: 1
   },
@@ -13,24 +13,18 @@ export default Component.extend({
 
   actions: {
     playFirst() {
-      console.log('play first -> ', this.get('queue'));
       let firstInQueue = this.get('queue.firstObject.ytid');
-      console.log('whos in the queue -> ', firstInQueue);
       this.set('ytid', firstInQueue);
       this.set('queuePosition', 0);
     },
     next() {
       let queuePosition = this.get('queuePosition');
-      let ytid;
       let queue = this.get('queue');
       if (queuePosition + 1 !== queue.length) {
         queuePosition += 1;
-        ytid = queue.objectAt(queuePosition).ytid;
+        let ytid = queue.objectAt(queuePosition).ytid;
         this.set('queuePosition', queuePosition);
         this.set('ytid', ytid);
-        console.log('next song');
-      } else {
-        console.log('end of the queue');
       }
     },
     previous() {
@@ -42,14 +36,33 @@ export default Component.extend({
         ytid = queue.objectAt(queuePosition).ytid;
         this.set('queuePosition', queuePosition);
         this.set('ytid', ytid);
-        console.log('Previous song');
-      } else {
-        console.log('First item in queue');
       }
     },
     playTrack(ytid, index) {
       this.set('queuePosition', index);
       this.set('ytid', ytid);
+    },
+    removeFromQueue(index) {
+      let queue = this.get('queue');
+      queue.removeAt(index);
+      this.set('queue', queue);
+    },
+    volumeUp() {
+      if ((this.get('volume') + 10) <= 100) {
+        this.set('volume', this.get('volume') + 10);
+      } else {
+        this.set('volume', 100);
+      }
+      console.log(this.get('volume'));
+    },
+    volumeDown() {
+      if ((this.get('volume') - 10) >= 0) {
+        this.set('volume', this.get('volume') - 10);
+      } else {
+        this.set('volume', 0);
+      }
+      console.log(this.get('volume'));
+
     }
   }
 });

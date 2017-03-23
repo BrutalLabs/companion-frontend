@@ -15,7 +15,6 @@ export default Controller.extend({
   actions: {
     searchSpotify() {
       this.get('spotifyStore').search(this.get('spotifyQuery')).then(function(response) {
-        console.log(response);
         this.set('albums', response.albums.items.slice(0,5));
         this.set('artists', response.artists.items.slice(0,5));
         this.set('tracks', response.tracks.items.slice(0,5));
@@ -30,7 +29,6 @@ export default Controller.extend({
     },
     searchYoutube() {
       this.get('youtubeStore').search(this.get('youtubeQuery')).then(function(response) {
-        console.log(response);
         let items = response.items.map(function(item) {
           return {
             title: item.snippet.title,
@@ -54,7 +52,6 @@ export default Controller.extend({
       let queue = this.get('queue');
       queue.pushObject(queueItem);
       this.set('queue', queue);
-      console.log('new queue', this.get('queue'));
     }
   }
 });
