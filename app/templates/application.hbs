@@ -1,21 +1,46 @@
-<h1>Initial Application Page</h1>
-<h3>Search for something:</h3>
-{{input value=query}}
-<br />
-<button {{action 'search'}}>Search !</button>
-<button {{action 'clear'}}>Clear results</button>
-<br />
-{{#if errors}}
-  Something went wrong: {{errors}}
-{{/if}}
-<br />
-{{#if albums}}
-  <h1>Albums</h1>
-{{/if}}
-{{#each albums as |album|}}
-  <p>{{album.name}}</p>
-  <img style="height: 50px; width 50px;" src="{{album.images.firstObject.url}}" />
-  <p>-----</p>
-{{/each}}
+<div class="left">
+  <h1>Initial Application Page</h1>
+  <h3>Search for something on spotify:</h3>
+  {{input value=spotifyQuery}}
+  <br />
+  <button {{action 'searchSpotify'}}>Search !</button>
+  <button {{action 'clearSpotify'}}>Clear results</button>
+  <br />
+  <h3>Search for something with youtube</h3>
+  {{input value=youtubeQuery}}
+  <br />
+  <button {{action 'searchYoutube'}}>Search !</button>
+  <button {{action 'clearYoutube'}}>Clear results</button>
+  <br />
+  -----------------------------------
+  <h1>Player bar</h1>
+
+  {{queue-player queue=queue}}
+</div>
+<div class="right">
+  <h1>Results</h1>
+
+  {{#if errors}}
+    Something went wrong: {{errors}}
+  {{/if}}
+  <br />
+  {{#if albums}}
+    <h3>Spotify</h3>
+    <h1>Albums</h1>
+  {{/if}}
+  {{#each albums as |album|}}
+    <p>{{album.name}}</p>
+    <img style="height: 50px; width 50px;" src="{{album.images.firstObject.url}}" />
+  {{/each}}
+
+  {{#if ytItems}}
+    <h3>Youtube</h3>
+  {{/if}}
+  {{#each ytItems as |item|}}
+    <p>{{item.title}}</p>
+    <img style="height: 50px; width 50px;" src="{{item.thumbnail}}" />
+    <button {{action "addToQueue" item}}>Add to Queue!</button>
+  {{/each}}
+</div>
 
 {{outlet}}

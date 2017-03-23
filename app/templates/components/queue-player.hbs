@@ -1,0 +1,32 @@
+{{#if queue}}
+  <h3>Queue</h3>
+  <button {{action 'playFirst'}}>Play Queue</button>
+
+  {{#each queue as |item index|}}
+  <p>Name: {{item.name}} <button {{action "playTrack" item.ytid index}}>Play</button></p>
+  {{#if item.isPlaying}}
+  Playing!
+  {{/if}}
+  {{/each}}
+
+  <h3>Player</h3>
+  {{ember-youtube
+    ytid=ytid
+    delegate=this
+    delegate-as="emberYoutube"
+    playerVars=playerVars
+    lazy-load=true
+    ended="next"
+  }}
+
+  <button {{action "togglePlay" target=emberYoutube}}>
+    {{#if emberYoutube.isPlaying}}Pause{{else}}Play{{/if}}
+  </button>
+  <button {{action "previous"}}>Previous</button>
+  <button {{action "next"}}>Next</button>
+  <button {{action "toggleVolume" target="emberYoutube"}}>
+    {{#if emberYoutube.isMuted}}Unmute{{else}}Mute{{/if}}
+  </button>
+{{else}}
+  No items in Queue
+{{/if}}
