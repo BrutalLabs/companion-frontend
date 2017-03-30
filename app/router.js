@@ -9,6 +9,7 @@ const Router = Ember.Router.extend({
 Router.map(function() {
   this.route('playlists', { path: '/playlists'}, function() {
     this.route('index', { path: '/'});
+    this.route('detail', { path: '/:reference'});
   });
 });
 

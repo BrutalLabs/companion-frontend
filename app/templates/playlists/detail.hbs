@@ -1,0 +1,12 @@
+<h3>Playlist name</h3>
+{{playlist.name}}
+
+<h3>Songlist</h3>
+{{#each playlist.tracks as |track| }}
+  <p>
+    name: {{track.name}}/ artist: {{track.artist}}
+    <button {{action 'playTrack' track}}>Play</button>
+  </p>
+{{/each}}
+
+{{#link-to 'playlists.index'}}View all{{/link-to}}

@@ -31,6 +31,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV.APP["api"] = {
       host: 'http://localhost:3000'
+      // host: 'https://companion-backend.herokuapp.com'
     }
   }
 

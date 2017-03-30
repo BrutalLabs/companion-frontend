@@ -1,41 +1,43 @@
-{{#if queue}}
-  <h3>Queue</h3>
-  <button {{action 'playFirst'}}>Play Queue</button>
+<div class="player-container">
+  {{#if queue}}
+    <h3>Queue</h3>
+    <button {{action 'playFirst'}}>Play Queue</button>
 
-  {{#each queue as |item index|}}
-  <p>
-    Name: {{item.name}}
-    <button {{action "playTrack" item.ytid index}}>Play</button>
-    <button {{action "removeFromQueue" index}}>Remove</button>
-  </p>
-  {{#if item.isPlaying}}
-  Playing!
-  {{/if}}
-  {{/each}}
+    {{#each queue as |item index|}}
+      <p>
+        Name: {{item.name}}
+        <button {{action "playTrack" item.ytid index}}>Play</button>
+        <button {{action "removeFromQueue" index}}>Remove</button>
+      </p>
+      {{#if item.isPlaying}}
+        Playing!
+      {{/if}}
+    {{/each}}
 
-  <h3>Player</h3>
+    <h3>Player controls</h3>
 
-  {{ember-youtube
-    ytid=ytid
-    delegate=this
-    delegate-as="emberYoutube"
-    playerVars=playerVars
-    lazy-load=true
-    ended="next"
-    volume=volume
-  }}
+    {{ember-youtube
+      ytid=ytid
+      delegate=this
+      delegate-as="emberYoutube"
+      playerVars=playerVars
+      lazy-load=true
+      ended="next"
+      volume=volume
+    }}
 
-  <button {{action "togglePlay" target=emberYoutube}}>
-    {{#if emberYoutube.isPlaying}}Pause{{else}}Play{{/if}}
-  </button>
-  <button {{action "previous"}}>Previous</button>
-  <button {{action "next"}}>Next</button>
-  <button {{action "volumeDown"}}>-</button>Volume<button {{action "volumeUp"}}>+</button>
-  {{#if emberYoutube.isMuted}}
-  <button {{action "unMute" target=emberYoutube}}>Unmute</button>
+    <button {{action "togglePlay" target=emberYoutube}}>
+      {{#if emberYoutube.isPlaying}}Pause{{else}}Play{{/if}}
+    </button>
+    <button {{action "previous"}}>Previous</button>
+    <button {{action "next"}}>Next</button>
+    <button {{action "volumeDown"}}>-</button>Volume<button {{action "volumeUp"}}>+</button>
+    {{#if emberYoutube.isMuted}}
+      <button {{action "unMute" target=emberYoutube}}>Unmute</button>
+    {{else}}
+      <button {{action "mute" target=emberYoutube}}>Mute</button>
+    {{/if}}
   {{else}}
-  <button {{action "mute" target=emberYoutube}}>Mute</button>
+    No items in Queue
   {{/if}}
-{{else}}
-  No items in Queue
-{{/if}}
+</div>

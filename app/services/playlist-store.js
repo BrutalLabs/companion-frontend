@@ -6,5 +6,8 @@ export default Service.extend({
 
   retrieve() {
     return this.get('ajax').request('/playlists');
+  },
+  retrieveById(id) {
+    return this.get('ajax').request(`/playlists/${id}`);
   }
 });
