@@ -1,45 +1,4 @@
-<div class="navbar">
-  {{#link-to 'index'}}<span>Companion</span>{{/link-to}}
-  <div class="navbar-search">
-    {{input placeholder="Spotify Search..." value=spotifyQuery}}
-    <button {{action 'searchSpotify'}}>Search !</button>
-    <button {{action 'clearSpotify'}}>Clear results</button>
-  </div>
-  <div class="navbar-search">
-    {{input placeholder="Youtube Search..." value=youtubeQuery}}
-    <button {{action 'searchYoutube'}}>Search !</button>
-    <button {{action 'clearYoutube'}}>Clear results</button>
-  </div>
-  <div class="navbar-search">
-    {{#link-to 'playlists.index'}}Playlists{{/link-to}}
-  </div>
-  <div class="navbar-result-container">
-    {{#if errors}}
-      Something went wrong: {{errors}}
-    {{/if}}
-
-    {{#if albums}}
-      <h3>Spotify</h3>
-    {{/if}}
-    {{#each albums as |album|}}
-      <div class="result-container">
-        <p>{{album.name}}</p>
-        <img style="height: 50px; width 50px;" src="{{album.images.firstObject.url}}" />
-      </div>
-    {{/each}}
-
-    {{#if ytItems}}
-      <h3>Youtube</h3>
-    {{/if}}
-    {{#each ytItems as |item|}}
-      <div class="result-container">
-        <p>{{item.title}}</p>
-        <img style="height: 50px; width 50px;" src="{{item.thumbnail}}" />
-        <button {{action "addToQueue" item}}>Add to Queue!</button>
-      </div>
-    {{/each}}
-  </div>
-</div>
+{{nav-bar}}
 
 {{outlet}}
 

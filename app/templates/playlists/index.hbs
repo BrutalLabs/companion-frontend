@@ -2,4 +2,7 @@
 {{#each playlists as |playlist index| }}
   <p>{{index}}. Name: {{playlist.name}} / Owner: {{playlist.owner}}</p>
   {{#link-to 'playlists.detail' playlist._id}}View{{/link-to}}
+  <button {{action 'delete' playlist._id}}>Delete</button>
 {{/each}}
+
+{{playlists-new}}

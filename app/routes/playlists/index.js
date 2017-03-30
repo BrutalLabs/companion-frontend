@@ -6,5 +6,15 @@ export default Route.extend({
 
   model() {
     return this.get('playlistStore').retrieve();
+  },
+
+  actions: {
+    delete(id) {
+      this.get('playlistStore').delete(id).then(function(response) {
+        console.log(response);
+      }.bind(this), function(error) {
+        console.log(error);
+      }.bind(this));
+    }
   }
 });

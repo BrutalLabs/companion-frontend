@@ -2,10 +2,11 @@
   {{#if queue}}
     <h3>Queue</h3>
     <button {{action 'playFirstInQueue'}}>Play Queue</button>
-
+    {{log queue}}
     {{#each queue as |track index|}}
       <p>
         Name: {{track.name}}
+        Ytid: {{track.ytid}}
         <button {{action "playTrack" track.ytid index}}>Play</button>
         <button {{action "removeFromQueue" index}}>Remove</button>
       </p>

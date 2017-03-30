@@ -14,6 +14,7 @@ export default Service.extend({
   },
 
   removeFromQueue(index) {
+    // TODO perform verifications when video is playing
     this.get('queue').removeAt(index);
   }
 });
