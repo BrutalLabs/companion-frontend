@@ -1,20 +1,23 @@
 import Ember from 'ember';
-const { Component, computed } = Ember;
+const { Component, computed, inject } = Ember;
 
 export default Component.extend({
-  queue: null,
+  queuePlayer: inject.service(),
+
+  queue: computed.alias('queuePlayer.queue'),
+  queuePosition: computed.alias('queuePlayer.queuePosition'),
+
   volume: 100,
+
   playerVars: {
     autoplay: 1
   },
 
   ytid: null,
-  queuePosition: null,
 
   actions: {
-    playFirst() {
-      let firstInQueue = this.get('queue.firstObject.ytid');
-      this.set('ytid', firstInQueue);
+    playFirstInQueue() {
+      this.set('ytid', this.get('queue.firstObject.ytid'));
       this.set('queuePosition', 0);
     },
     next() {
@@ -42,18 +45,12 @@ export default Component.extend({
       this.set('queuePosition', index);
       this.set('ytid', ytid);
     },
-    removeFromQueue(index) {
-      let queue = this.get('queue');
-      queue.removeAt(index);
-      this.set('queue', queue);
-    },
     volumeUp() {
       if ((this.get('volume') + 10) <= 100) {
         this.set('volume', this.get('volume') + 10);
       } else {
         this.set('volume', 100);
       }
-      console.log(this.get('volume'));
     },
     volumeDown() {
       if ((this.get('volume') - 10) >= 0) {
@@ -61,8 +58,9 @@ export default Component.extend({
       } else {
         this.set('volume', 0);
       }
-      console.log(this.get('volume'));
-
+    },
+    removeFromQueue(index) {
+      this.get('queuePlayer').removeFromQueue(index);
     }
   }
 });

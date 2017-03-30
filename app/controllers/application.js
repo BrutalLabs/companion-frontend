@@ -1,10 +1,12 @@
 import Ember from 'ember';
-const { Controller, inject, A } = Ember;
+const { Controller, computed, inject, A } = Ember;
 
 export default Controller.extend({
   spotifyStore: inject.service(),
   youtubeStore: inject.service(),
-  queue: A(),
+  queuePlayer: inject.service(),
+
+  queue: computed.alias('queuePlayer.queue'),
   spotifyQuery: null,
   youtubeQuery: null,
   albums: null,

@@ -1,15 +1,15 @@
 <div class="player-container">
   {{#if queue}}
     <h3>Queue</h3>
-    <button {{action 'playFirst'}}>Play Queue</button>
+    <button {{action 'playFirstInQueue'}}>Play Queue</button>
 
-    {{#each queue as |item index|}}
+    {{#each queue as |track index|}}
       <p>
-        Name: {{item.name}}
-        <button {{action "playTrack" item.ytid index}}>Play</button>
+        Name: {{track.name}}
+        <button {{action "playTrack" track.ytid index}}>Play</button>
         <button {{action "removeFromQueue" index}}>Remove</button>
       </p>
-      {{#if item.isPlaying}}
+      {{#if track.isPlaying}}
         Playing!
       {{/if}}
     {{/each}}
@@ -38,6 +38,6 @@
       <button {{action "mute" target=emberYoutube}}>Mute</button>
     {{/if}}
   {{else}}
-    No items in Queue
+    No tracks in Queue
   {{/if}}
 </div>

@@ -1,5 +1,5 @@
 <div class="navbar">
-  <span>Companion</span>
+  {{#link-to 'index'}}<span>Companion</span>{{/link-to}}
   <div class="navbar-search">
     {{input placeholder="Spotify Search..." value=spotifyQuery}}
     <button {{action 'searchSpotify'}}>Search !</button>
@@ -9,6 +9,9 @@
     {{input placeholder="Youtube Search..." value=youtubeQuery}}
     <button {{action 'searchYoutube'}}>Search !</button>
     <button {{action 'clearYoutube'}}>Clear results</button>
+  </div>
+  <div class="navbar-search">
+    {{#link-to 'playlists.index'}}Playlists{{/link-to}}
   </div>
   <div class="navbar-result-container">
     {{#if errors}}
